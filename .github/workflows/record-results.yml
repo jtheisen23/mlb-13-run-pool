@@ -1,0 +1,38 @@
+name: "📊 Record Weekly Results"
+
+on:
+  schedule:
+    - cron: '0 11 * * 1'   # Monday 11:00 UTC = 6:00am CDT (1 hour before draw)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Record weekly results
+        run: node scripts/record-results.js
+
+      - name: Commit updated history
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/history.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            WEEK=$(node -e "const w=require('./data/current-week.json'); process.stdout.write(String(w.number));")
+            DATE=$(date -u '+%Y-%m-%d')
+            git commit -m "📊 Week ${WEEK} results recorded — ${DATE}"
+            git push
+          fi

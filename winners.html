@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winners &amp; History — MLB 13 Run Pool 2026</title>
+  <style>
+    :root {
+      --bg:     #06102a;
+      --bg2:    #0c1f4a;
+      --bg3:    #0e2458;
+      --gold:   #CC3433;
+      --green:  #28a745;
+      --glt:    #75d48a;
+      --yellow: #ffc107;
+      --bllt:   #7baaf7;
+      --muted:  #8a9bb0;
+      --border: #1e3a7a;
+      --text:   #e8e8e8;
+      --red:    #dc3545;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; font-size: 14px; }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #04102a, #0e2458 50%, #04102a);
+      border-bottom: 3px solid var(--gold);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+    header h1 { font-size: clamp(1.5rem,5vw,2.4rem); font-weight: 800; color: var(--gold); letter-spacing: 1px; text-shadow: 0 2px 14px rgba(204,52,51,.3); }
+    header p  { color: var(--muted); font-size: .85rem; margin-top: .2rem; }
+
+    /* ── Nav ── */
+    nav {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: .6rem 1rem;
+    }
+    nav a { text-decoration: none; font-size: .85rem; font-weight: 600; padding: .4rem .9rem; border-radius: 6px; }
+
+    /* ── Season Summary Cards ── */
+    .summary-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .75rem;
+      max-width: 900px;
+      margin: 1.25rem auto .25rem;
+      padding: 0 1rem;
+    }
+    @media(max-width:600px){ .summary-row { grid-template-columns: 1fr; } }
+    .sum-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .sum-card .lbl { color: var(--muted); font-size: .66rem; text-transform: uppercase; letter-spacing: .8px; margin-bottom: .3rem; }
+    .sum-card .val { font-size: 1.6rem; font-weight: 700; color: var(--gold); line-height: 1.1; }
+    .sum-card .sub { font-size: .72rem; color: var(--muted); margin-top: .25rem; }
+
+    /* ── Main ── */
+    main { max-width: 1100px; margin: 0 auto; padding: 1.1rem 1rem 3rem; }
+
+    /* ── Tabs ── */
+    .tabs { display: flex; gap: .5rem; margin-bottom: 1.1rem; }
+    .tab-btn {
+      flex: 1; max-width: 200px; padding: .6rem 1.2rem;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px 8px 0 0; color: var(--muted);
+      font-size: .9rem; font-weight: 600; cursor: pointer;
+      transition: all .15s; border-bottom: none;
+    }
+    .tab-btn.active { background: var(--bg3); color: var(--gold); border-color: var(--gold); }
+    .tab-btn:hover:not(.active) { color: var(--text); }
+
+    /* ── Pool Panel ── */
+    .pool-panel { background: var(--bg3); border: 1px solid var(--border); border-radius: 0 8px 8px 8px; padding: 1.1rem; }
+
+    /* ── Mini Cards ── */
+    .cards-row { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem; margin-bottom: 1rem; }
+    @media(max-width:580px){ .cards-row { grid-template-columns: 1fr; } }
+    .mini-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: .9rem; text-align: center; }
+    .mini-card .lbl { color: var(--muted); font-size: .66rem; text-transform: uppercase; letter-spacing: .8px; margin-bottom: .3rem; }
+    .mini-card .val { font-size: 1.5rem; font-weight: 700; color: var(--gold); line-height: 1.1; }
+    .mini-card .sub { font-size: .72rem; color: var(--muted); margin-top: .2rem; }
+
+    /* ── Section ── */
+    .section { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1rem; }
+    .sec-head { padding: .75rem 1.1rem; border-bottom: 1px solid var(--border); }
+    .sec-head h3 { font-size: .9rem; font-weight: 700; }
+
+    /* ── Tables ── */
+    .tbl-wrap { overflow-x: auto; }
+    table.htbl { width: 100%; border-collapse: collapse; white-space: nowrap; }
+    table.htbl th {
+      background: rgba(0,0,0,.3); padding: .45rem .7rem;
+      font-size: .65rem; text-transform: uppercase; letter-spacing: .5px;
+      color: var(--muted); text-align: left;
+    }
+    table.htbl th.right { text-align: right; }
+    table.htbl th.center { text-align: center; }
+    table.htbl td { padding: .45rem .7rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    table.htbl tr:last-child td { border-bottom: none; }
+    table.htbl tr:hover { background: rgba(255,255,255,.025); }
+
+    /* Leaderboard specific */
+    .lb-rank  { color: var(--muted); font-size: .75rem; width: 32px; }
+    .lb-name  { font-weight: 500; }
+    .lb-wins  { text-align: center; color: var(--bllt); font-weight: 600; }
+    .lb-money { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .lb-money.positive { color: var(--glt); }
+    .lb-money.zero     { color: var(--muted); }
+    .row-gold { background: rgba(204,52,51,.1) !important; }
+    .row-gold td { border-color: rgba(204,52,51,.25); }
+
+    /* Weekly results row colors */
+    .row-winner { background: rgba(40,167,69,.08) !important; }
+    .row-winner td { border-color: rgba(40,167,69,.2); }
+    .row-tie    { background: rgba(255,193,7,.07) !important; }
+    .row-tie td { border-color: rgba(255,193,7,.2); }
+    .row-muted  { opacity: .6; }
+    .row-future { opacity: .35; }
+
+    .bdg { display: inline-block; border-radius: 20px; padding: .16rem .5rem; font-size: .65rem; font-weight: 600; white-space: nowrap; }
+    .bdg-win      { background: rgba(40,167,69,.2);  color: var(--glt);    border: 1px solid rgba(40,167,69,.4); }
+    .bdg-tie      { background: rgba(255,193,7,.2);  color: var(--yellow); border: 1px solid rgba(255,193,7,.3); }
+    .bdg-rollover { background: rgba(138,155,176,.15); color: var(--muted); border: 1px solid rgba(138,155,176,.3); }
+    .bdg-inprog   { background: rgba(13,110,253,.15); color: var(--bllt);  border: 1px solid rgba(13,110,253,.3); }
+
+    /* ── Empty state ── */
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--muted);
+    }
+    .empty-state .big { font-size: 2.5rem; margin-bottom: .75rem; }
+    .empty-state h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
+    .empty-state p  { font-size: .85rem; line-height: 1.6; }
+
+    /* ── Spinner ── */
+    .spinner-wrap { display: flex; align-items: center; justify-content: center; gap: .7rem; padding: 2.5rem; color: var(--muted); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { width: 20px; height: 20px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin .7s linear infinite; flex-shrink: 0; }
+
+    /* ── Footer ── */
+    footer { text-align: center; padding: 1rem; color: var(--muted); font-size: .72rem; border-top: 1px solid var(--border); margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚾ MLB 13 Run Pool</h1>
+  <p>2026 Season &bull; 2 Pools &bull; 24 Weeks &bull; Score exactly 13 runs in a game to win</p>
+</header>
+
+<nav>
+  <a href="index.html" style="color:var(--muted);">🏠 Live Scores</a>
+  <a href="winners.html" style="color:var(--gold);background:rgba(204,52,51,.15);border:1px solid rgba(204,52,51,.3);">🏆 Winners &amp; History</a>
+</nav>
+
+<!-- Season Summary -->
+<div class="summary-row" id="summaryRow">
+  <div class="sum-card">
+    <div class="lbl">Pool #1 Total Paid Out</div>
+    <div class="val" id="sumP1">—</div>
+    <div class="sub" id="sumP1Sub">loading…</div>
+  </div>
+  <div class="sum-card">
+    <div class="lbl">Pool #2 Total Paid Out</div>
+    <div class="val" id="sumP2">—</div>
+    <div class="sub" id="sumP2Sub">loading…</div>
+  </div>
+  <div class="sum-card">
+    <div class="lbl">Current Week</div>
+    <div class="val" id="sumWeek">—</div>
+    <div class="sub" id="sumWeekSub">loading…</div>
+  </div>
+</div>
+
+<main>
+  <!-- Pool Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" id="tab1" onclick="showPool(1)">Pool #1</button>
+    <button class="tab-btn"        id="tab2" onclick="showPool(2)">Pool #2</button>
+  </div>
+
+  <!-- ── Pool #1 ── -->
+  <div class="pool-panel" id="pool1Panel">
+    <div class="cards-row">
+      <div class="mini-card">
+        <div class="lbl">Current Pot</div>
+        <div class="val" id="p1Pot">—</div>
+        <div class="sub" id="p1PotSub">loading…</div>
+      </div>
+      <div class="mini-card">
+        <div class="lbl">Weeks Won</div>
+        <div class="val" id="p1Wins" style="color:var(--glt)">—</div>
+        <div class="sub" id="p1WinsSub">loading…</div>
+      </div>
+      <div class="mini-card">
+        <div class="lbl">Last Winner</div>
+        <div class="val" id="p1Last" style="font-size:1rem;padding-top:.2rem">—</div>
+        <div class="sub" id="p1LastSub">loading…</div>
+      </div>
+    </div>
+
+    <div id="p1Content">
+      <div class="spinner-wrap"><div class="spin"></div><span>Loading history…</span></div>
+    </div>
+  </div>
+
+  <!-- ── Pool #2 ── -->
+  <div class="pool-panel" id="pool2Panel" style="display:none">
+    <div class="cards-row">
+      <div class="mini-card">
+        <div class="lbl">Current Pot</div>
+        <div class="val" id="p2Pot">—</div>
+        <div class="sub" id="p2PotSub">loading…</div>
+      </div>
+      <div class="mini-card">
+        <div class="lbl">Weeks Won</div>
+        <div class="val" id="p2Wins" style="color:var(--glt)">—</div>
+        <div class="sub" id="p2WinsSub">loading…</div>
+      </div>
+      <div class="mini-card">
+        <div class="lbl">Last Winner</div>
+        <div class="val" id="p2Last" style="font-size:1rem;padding-top:.2rem">—</div>
+        <div class="sub" id="p2LastSub">loading…</div>
+      </div>
+    </div>
+
+    <div id="p2Content">
+      <div class="spinner-wrap"><div class="spin"></div><span>Loading history…</span></div>
+    </div>
+  </div>
+</main>
+
+<footer>MLB 13 Run Pool &bull; Winners &amp; History &bull; Results recorded automatically every Monday at 6am CT</footer>
+
+<script>
+// ─── Tab switching ────────────────────────────────────────────────────────────
+function showPool(n) {
+  document.getElementById('pool1Panel').style.display = n === 1 ? '' : 'none';
+  document.getElementById('pool2Panel').style.display = n === 2 ? '' : 'none';
+  document.getElementById('tab1').classList.toggle('active', n === 1);
+  document.getElementById('tab2').classList.toggle('active', n === 2);
+}
+
+// ─── Date helpers ─────────────────────────────────────────────────────────────
+function addDays(dateStr, n) {
+  const d = new Date(dateStr + 'T12:00:00');
+  d.setDate(d.getDate() + n);
+  return d.toISOString().slice(0, 10);
+}
+
+function fmtDate(dateStr) {
+  return new Date(dateStr + 'T12:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+function fmtRange(startStr) {
+  const endStr = addDays(startStr, 6);
+  return fmtDate(startStr) + ' – ' + fmtDate(endStr);
+}
+
+// Given season startDate (Monday of week 1), compute current week number
+function currentWeekNum(seasonStartStr, totalWeeks) {
+  const today = new Date();
+  today.setHours(12, 0, 0, 0);
+  const start = new Date(seasonStartStr + 'T12:00:00');
+  if (today < start) return 1;
+  const diffMs   = today - start;
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const weekNum  = Math.floor(diffDays / 7) + 1;
+  return Math.min(weekNum, totalWeeks);
+}
+
+// ─── Pot calculation ──────────────────────────────────────────────────────────
+// For each week in 1..totalWeeks, compute pot = (w - lastWinWeek) * weeklyPot
+function buildPotMap(historyArr, totalWeeks, weeklyPot) {
+  const potMap = {};
+  let lastWinWeek = 0;
+  for (let w = 1; w <= totalWeeks; w++) {
+    const entry = historyArr.find(r => r.week === w);
+    const pot = (w - lastWinWeek) * weeklyPot;
+    potMap[w] = pot;
+    if (entry && entry.result === 'winner') {
+      lastWinWeek = w;
+    }
+  }
+  return potMap;
+}
+
+// Current pot = next unrecorded week's pot
+function currentPot(historyArr, totalWeeks, weeklyPot) {
+  let lastWinWeek = 0;
+  const recordedWeeks = new Set(historyArr.map(r => r.week));
+  // Find the first unrecorded week
+  let nextWeek = 1;
+  for (let w = 1; w <= totalWeeks; w++) {
+    if (!recordedWeeks.has(w)) { nextWeek = w; break; }
+    if (historyArr.find(r => r.week === w && r.result === 'winner')) lastWinWeek = w;
+  }
+  return (nextWeek - lastWinWeek) * weeklyPot;
+}
+
+// ─── Leaderboard builder ──────────────────────────────────────────────────────
+function buildLeaderboard(players, historyArr, potMap) {
+  const stats = {};
+  for (const p of players) {
+    stats[p] = { wins: 0, total: 0 };
+  }
+  for (const entry of historyArr) {
+    if (entry.result === 'winner' && entry.winner) {
+      if (!stats[entry.winner]) stats[entry.winner] = { wins: 0, total: 0 };
+      stats[entry.winner].wins++;
+      stats[entry.winner].total += (entry.pot || 0);
+    }
+  }
+  // Sort: total desc, wins desc, name asc
+  return Object.entries(stats)
+    .sort(([na, a], [nb, b]) => {
+      if (b.total !== a.total) return b.total - a.total;
+      if (b.wins  !== a.wins)  return b.wins  - a.wins;
+      return na.localeCompare(nb);
+    });
+}
+
+// ─── Render a pool ────────────────────────────────────────────────────────────
+function renderPool(poolKey, players, historyArr, config, curWeekNum) {
+  const { totalWeeks, weeklyPot, startDate } = config;
+  const potMap = buildPotMap(historyArr, totalWeeks, weeklyPot);
+  const label  = poolKey === 'pool1' ? '1' : '2';
+  const pfx    = 'p' + label;
+
+  // ── Mini cards ──
+  const pot = currentPot(historyArr, totalWeeks, weeklyPot);
+  document.getElementById(pfx + 'Pot').textContent = '$' + pot;
+  document.getElementById(pfx + 'PotSub').textContent =
+    historyArr.length === 0 ? 'season just started' : 'current pot value';
+
+  const wins = historyArr.filter(r => r.result === 'winner').length;
+  document.getElementById(pfx + 'Wins').textContent = wins;
+  document.getElementById(pfx + 'WinsSub').textContent =
+    wins === 1 ? '1 week won this season' : wins + ' weeks won this season';
+
+  const lastWin = [...historyArr].reverse().find(r => r.result === 'winner');
+  document.getElementById(pfx + 'Last').textContent = lastWin ? lastWin.winner : 'None yet';
+  document.getElementById(pfx + 'LastSub').textContent = lastWin
+    ? lastWin.team + ' — Wk ' + lastWin.week
+    : 'no winner yet';
+
+  // ── Build content HTML ──
+  const contentEl = document.getElementById(pfx + 'Content');
+
+  if (historyArr.length === 0) {
+    // Empty state — season just started
+    contentEl.innerHTML = `
+      <div class="section">
+        <div class="sec-head"><h3>🥇 Player Leaderboard</h3></div>
+        <div class="empty-state">
+          <div class="big">🏁</div>
+          <h3>Season just started!</h3>
+          <p>Check back after Week 1 results are recorded (Monday, April 20th).</p>
+        </div>
+      </div>
+      <div class="section">
+        <div class="sec-head"><h3>📋 Weekly Results</h3></div>
+        <div class="empty-state">
+          <div class="big">📅</div>
+          <h3>No results yet</h3>
+          <p>Week 1 runs April 13 – 19, 2026. Results are recorded automatically every Monday.</p>
+        </div>
+      </div>`;
+    return;
+  }
+
+  // ── Leaderboard ──
+  const lb = buildLeaderboard(players, historyArr, potMap);
+  const topTotal = lb[0] ? lb[0][1].total : 0;
+
+  let lbRows = '';
+  lb.forEach(([player, { wins: w, total }], idx) => {
+    const isGold = total > 0 && total === topTotal;
+    const moneyClass = total > 0 ? 'positive' : 'zero';
+    lbRows += `<tr class="${isGold ? 'row-gold' : ''}">
+      <td class="lb-rank">${idx + 1}</td>
+      <td class="lb-name">${player}</td>
+      <td class="lb-wins">${w}</td>
+      <td class="lb-money ${moneyClass}">${total > 0 ? '$' + total : '$0'}</td>
+    </tr>`;
+  });
+
+  // ── Weekly results ──
+  let wkRows = '';
+  for (let w = 1; w <= totalWeeks; w++) {
+    const weekStart = addDays(startDate, (w - 1) * 7);
+    const weekEnd   = addDays(weekStart, 6);
+    const dates     = fmtDate(weekStart) + ' – ' + fmtDate(weekEnd);
+    const pot_w     = potMap[w] || w * weeklyPot;
+    const entry     = historyArr.find(r => r.week === w);
+
+    let rowClass = '', badge = '', winnerCell = '', teamCell = '';
+
+    if (entry) {
+      if (entry.result === 'winner') {
+        rowClass    = 'row-winner';
+        badge       = '<span class="bdg bdg-win">Winner</span>';
+        winnerCell  = entry.winner || '—';
+        teamCell    = entry.team   || '—';
+      } else if (entry.result === 'tie') {
+        rowClass   = 'row-tie';
+        badge      = '<span class="bdg bdg-tie">Tie / Rollover</span>';
+        winnerCell = '—';
+        teamCell   = '—';
+      } else {
+        rowClass   = 'row-muted';
+        badge      = '<span class="bdg bdg-rollover">Rollover</span>';
+        winnerCell = '—';
+        teamCell   = '—';
+      }
+    } else if (w === curWeekNum) {
+      badge      = '<span class="bdg bdg-inprog">In Progress</span>';
+      winnerCell = '—';
+      teamCell   = '—';
+    } else if (w < curWeekNum) {
+      rowClass   = 'row-muted';
+      badge      = '<span class="bdg bdg-rollover">Pending</span>';
+      winnerCell = '—';
+      teamCell   = '—';
+    } else {
+      rowClass   = 'row-future';
+      badge      = '';
+      winnerCell = '';
+      teamCell   = '';
+    }
+
+    wkRows += `<tr class="${rowClass}">
+      <td style="font-weight:700;color:var(--gold);">${w}</td>
+      <td style="color:var(--muted);font-size:.8rem;">${dates}</td>
+      <td style="font-weight:600;">$${pot_w}</td>
+      <td>${badge}</td>
+      <td>${winnerCell}</td>
+      <td style="color:var(--bllt);">${teamCell}</td>
+    </tr>`;
+  }
+
+  contentEl.innerHTML = `
+    <div class="section">
+      <div class="sec-head"><h3>🥇 Player Leaderboard</h3></div>
+      <div class="tbl-wrap">
+        <table class="htbl">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Player</th>
+              <th class="center">Wins</th>
+              <th class="right">Total Winnings</th>
+            </tr>
+          </thead>
+          <tbody>${lbRows}</tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-head"><h3>📋 Weekly Results</h3></div>
+      <div class="tbl-wrap">
+        <table class="htbl">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Dates</th>
+              <th>Pot</th>
+              <th>Result</th>
+              <th>Winner</th>
+              <th>Team</th>
+            </tr>
+          </thead>
+          <tbody>${wkRows}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+async function init() {
+  let pools, history;
+
+  try {
+    const [pr, hr] = await Promise.all([
+      fetch('data/pools.json'),
+      fetch('data/history.json')
+    ]);
+    pools   = await pr.json();
+    history = await hr.json();
+  } catch (err) {
+    console.error('Failed to load data:', err);
+    document.getElementById('p1Content').innerHTML =
+      '<div class="empty-state"><div class="big">⚠️</div><h3>Could not load data</h3><p>' + err.message + '</p></div>';
+    document.getElementById('p2Content').innerHTML =
+      document.getElementById('p1Content').innerHTML;
+    return;
+  }
+
+  const { totalWeeks, weeklyPot, startDate } = pools;
+  const curWeekNum = currentWeekNum(startDate, totalWeeks);
+
+  // ── Season summary cards ──
+  const p1History = history.pool1 || [];
+  const p2History = history.pool2 || [];
+
+  const p1PaidOut = p1History.filter(r => r.result === 'winner').reduce((s, r) => s + (r.pot || 0), 0);
+  const p2PaidOut = p2History.filter(r => r.result === 'winner').reduce((s, r) => s + (r.pot || 0), 0);
+  const p1Wins    = p1History.filter(r => r.result === 'winner').length;
+  const p2Wins    = p2History.filter(r => r.result === 'winner').length;
+
+  document.getElementById('sumP1').textContent    = '$' + p1PaidOut;
+  document.getElementById('sumP1Sub').textContent = p1Wins + (p1Wins === 1 ? ' winner' : ' winners') + ' this season';
+  document.getElementById('sumP2').textContent    = '$' + p2PaidOut;
+  document.getElementById('sumP2Sub').textContent = p2Wins + (p2Wins === 1 ? ' winner' : ' winners') + ' this season';
+  document.getElementById('sumWeek').textContent  = 'Week ' + curWeekNum;
+
+  const weekStart = addDays(startDate, (curWeekNum - 1) * 7);
+  document.getElementById('sumWeekSub').textContent = fmtRange(weekStart) + ' of ' + totalWeeks;
+
+  // ── Render each pool ──
+  renderPool('pool1', pools.pool1.players, p1History, pools, curWeekNum);
+  renderPool('pool2', pools.pool2.players, p2History, pools, curWeekNum);
+}
+
+init();
+</script>
+</body>
+</html>

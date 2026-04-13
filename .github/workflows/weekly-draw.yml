@@ -1,0 +1,38 @@
+name: "🎲 Weekly Random Draw"
+
+on:
+  schedule:
+    - cron: '0 12 * * 1'   # Monday 12:00 UTC = 7:00am CDT
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run weekly draw
+        run: node scripts/weekly-draw.js
+
+      - name: Commit updated assignments
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/current-week.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit (season may be complete)."
+          else
+            WEEK=$(node -e "const w=require('./data/current-week.json'); process.stdout.write(String(w.number));")
+            DATE=$(date -u '+%Y-%m-%d')
+            git commit -m "🎲 Week ${WEEK} random draw — ${DATE}"
+            git push
+          fi

@@ -1,0 +1,14 @@
+{
+  "season": 2026,
+  "startDate": "2026-04-13",
+  "totalWeeks": 24,
+  "weeklyPot": 125,
+  "pool1": {
+    "name": "Pool #1",
+    "players": ["Billy Bartlett","Greg Abel","Nick Eggemeyer","Nick Vlattas","Mitchell Rottier","Todd Karas","Travis Hemming","Bobby Manikas","Tom Brown","Rob Hassels","Dave Jordan","Jason Segebrecht","Wes Frangul","Bobs Berry","Bill Olsen","Sean Dolan","Harley Piercy","Dave Hood","Pat Fisher","Bobby Darnall","Tom Zarndt","Craig Anderson","Jim Murphy","Ted Homewood","Brett Hassels","Aaron Burnside","Jim Quisling","Mike McQuillan","Trevor Benson","Joe Novak"]
+  },
+  "pool2": {
+    "name": "Pool #2",
+    "players": ["Jim Murphy","Jim Whitley","Dave Burns","Wes Frangul","Joe Novak","Scott Vogg","Jeremy Theisen","Lee Schreiber","Brian Regan","Tom Brown","Brian Wiedenhoeft","Todd Karas","Bobs Berry","Luke Cella","Dave Hood","Gary Reno","Trevor Benson","Grant Douglas","Jason Segebrecht","Brett Hassels","Tom Rogers","Ryan Bird","Vic Mehren","Travis Hemming","Ted Homewood","Roger Brown","Jeff Dillenberg","Rob Hassels","Bobby Manikas","Bob Spring"]
+  }
+}
