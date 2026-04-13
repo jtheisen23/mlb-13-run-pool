@@ -5,11 +5,14 @@ const CONFIG = {
   weeklyPot:   125,            // $125/week · $125 × 24 = $3,000 total
 
   // ═══════════════════════════════════════════════════════════════
-  //  CURRENT WEEK — Update every Monday after the 7am draw
-  //  1. Bump "number" by 1
-  //  2. Set "startDate" to that Monday (YYYY-MM-DD)
-  //  3. Replace each player's "team" with their drawn team for that week
-  //  4. Move the previous week into the matching pool's weekHistory below
+  //  CURRENT WEEK — Auto-updated every Monday at 7am CT by GitHub Actions
+  //
+  //  Rotation rule: Teams stay in fixed alphabetical order every week.
+  //  Players rotate DOWN one spot — the last player wraps to the top.
+  //    Week 1: Billy Bartlett→ARI ... Joe Novak→WSH
+  //    Week 2: Joe Novak→ARI, Billy Bartlett→ATL ... Trevor Benson→WSH
+  //    Week 3: Trevor Benson→ARI, Joe Novak→ATL ... Mike McQuillan→WSH
+  //  No player ever gets the same team twice (30 teams, only 24 weeks).
   // ═══════════════════════════════════════════════════════════════
   currentWeek: {
     number:    1,

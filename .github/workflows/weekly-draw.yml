@@ -1,4 +1,4 @@
-name: "🎲 Weekly Random Draw"
+name: "🔄 Weekly Player Rotation"
 
 on:
   schedule:
@@ -33,6 +33,6 @@ jobs:
           else
             WEEK=$(node -e "const w=require('./data/current-week.json'); process.stdout.write(String(w.number));")
             DATE=$(date -u '+%Y-%m-%d')
-            git commit -m "🎲 Week ${WEEK} random draw — ${DATE}"
+            git commit -m "🔄 Week ${WEEK} player rotation — ${DATE}"
             git push
           fi
