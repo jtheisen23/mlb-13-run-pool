@@ -30,7 +30,7 @@ const CONFIG = {
       { player: "Travis Hemming",   team: "CIN" },
       { player: "Bobby Manikas",    team: "CLE" },
       { player: "Tom Brown",        team: "COL" },
-      { player: "Rob Hassels",      team: "DET" },
+      { player: "Bill McDonald",     team: "DET" },
       { player: "Dave Jordan",      team: "HOU" },
       { player: "Jason Segebrecht", team: "KC"  },
       { player: "Wes Frangul",      team: "LAA" },
