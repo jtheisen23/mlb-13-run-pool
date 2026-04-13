@@ -161,10 +161,6 @@
   <div class="wbItem"><div class="wlbl">Season Ends</div><div class="wval" id="wbEnd">—</div></div>
 </div>
 
-<!-- Monday draw reminder (shown Mondays only) -->
-<div id="drawReminder" style="display:none">
-  🎲 New week! Update <code>config.js</code> with today's 7am random draw results for both pools.
-</div>
 
 <main>
   <!-- Pool Tabs -->
@@ -407,9 +403,6 @@ function renderWeekBar(weekNum, dates) {
   document.getElementById("wbRemain").textContent= weeksRemaining() + " week(s)";
   document.getElementById("wbEnd").textContent   = seasonEndStr();
 
-  // Show Monday reminder if today is Monday
-  const dayOfWeek = new Date().getDay(); // 0=Sun, 1=Mon
-  document.getElementById("drawReminder").style.display = dayOfWeek === 1 ? "" : "none";
 }
 
 // ─── Render: Pool ─────────────────────────────────────────────────────────────
