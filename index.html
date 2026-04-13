@@ -135,6 +135,32 @@
     /* ── No data message ── */
     .no-data { padding: 1.5rem; text-align: center; color: var(--muted); font-size: .85rem; }
 
+    /* ── Winners tab tables ── */
+    table.htbl { width:100%; border-collapse:collapse; white-space:nowrap; }
+    table.htbl th { background:rgba(0,0,0,.3); padding:.45rem .7rem; font-size:.65rem; text-transform:uppercase; letter-spacing:.5px; color:var(--muted); text-align:left; }
+    table.htbl th.right  { text-align:right; }
+    table.htbl th.center { text-align:center; }
+    table.htbl td { padding:.45rem .7rem; border-bottom:1px solid var(--border); vertical-align:middle; }
+    table.htbl tr:last-child td { border-bottom:none; }
+    table.htbl tr:hover { background:rgba(255,255,255,.025); }
+    .lb-rank  { color:var(--muted); font-size:.75rem; width:32px; }
+    .lb-name  { font-weight:500; }
+    .lb-wins  { text-align:center; color:var(--bllt); font-weight:600; }
+    .lb-money { text-align:right; font-weight:700; font-variant-numeric:tabular-nums; }
+    .lb-money.pos  { color:var(--glt); }
+    .lb-money.zero { color:var(--muted); }
+    .row-gold { background:rgba(204,52,51,.1)!important; }
+    .wk-winner { background:rgba(40,167,69,.08)!important; }
+    .wk-tie    { background:rgba(255,193,7,.07)!important; }
+    .wk-roll   { opacity:.6; }
+    .wk-future { opacity:.3; }
+    .bdg-rollover { background:rgba(138,155,176,.15); color:var(--muted); border:1px solid rgba(138,155,176,.3); }
+    .bdg-inprog   { background:rgba(13,110,253,.15);  color:var(--bllt); border:1px solid rgba(13,110,253,.3); }
+    .empty-win { text-align:center; padding:2.5rem 1rem; color:var(--muted); }
+    .empty-win .big { font-size:2.5rem; margin-bottom:.5rem; }
+    .empty-win h3 { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:.4rem; }
+    .empty-win p  { font-size:.82rem; line-height:1.6; }
+
     /* ── Loading ── */
     .spinner-wrap { display: flex; align-items: center; justify-content: center; gap: .7rem; padding: 2.5rem; color: var(--muted); }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -164,9 +190,12 @@
 
 <main>
   <!-- Pool Tabs -->
-  <div class="tabs">
-    <button class="tab-btn active" id="tab1" onclick="showPool(1)">Pool #1</button>
-    <button class="tab-btn"        id="tab2" onclick="showPool(2)">Pool #2</button>
+  <div class="tabs" style="flex-wrap:wrap;">
+    <button class="tab-btn active" id="tab1" onclick="showPool(1)">⚾ Pool #1</button>
+    <button class="tab-btn"        id="tab2" onclick="showPool(2)">⚾ Pool #2</button>
+    <button class="tab-btn"        id="tab3" onclick="showPool(3)">🏆 Pool #1 Winners</button>
+    <button class="tab-btn"        id="tab4" onclick="showPool(4)">🏆 Pool #2 Winners</button>
+    <button class="tab-btn"        id="tab5" onclick="showPool(5)">👔 The Commissioner</button>
   </div>
 
   <!-- ── Pool #1 ── -->
@@ -234,6 +263,38 @@
     <div class="section" id="p2HistSec" style="display:none">
       <div class="sec-head"><h3>📋 Week History</h3></div>
       <div id="p2Hist"></div>
+    </div>
+  </div>
+
+  <!-- ── Pool #1 Winners ── -->
+  <div class="pool-panel" id="pool3Panel" style="display:none">
+    <div class="cards-row">
+      <div class="mini-card"><div class="lbl">Current Pot</div><div class="val" id="w1Pot">—</div><div class="sub" id="w1PotSub">—</div></div>
+      <div class="mini-card"><div class="lbl">Weeks Won</div><div class="val" id="w1Wins" style="color:var(--glt)">—</div><div class="sub" id="w1WinsSub">—</div></div>
+      <div class="mini-card"><div class="lbl">Last Winner</div><div class="val" id="w1Last" style="font-size:1rem;padding-top:.2rem">—</div><div class="sub" id="w1LastSub">—</div></div>
+    </div>
+    <div id="w1Content"><div class="spinner-wrap"><div class="spin"></div><span>Loading…</span></div></div>
+  </div>
+
+  <!-- ── Pool #2 Winners ── -->
+  <div class="pool-panel" id="pool4Panel" style="display:none">
+    <div class="cards-row">
+      <div class="mini-card"><div class="lbl">Current Pot</div><div class="val" id="w2Pot">—</div><div class="sub" id="w2PotSub">—</div></div>
+      <div class="mini-card"><div class="lbl">Weeks Won</div><div class="val" id="w2Wins" style="color:var(--glt)">—</div><div class="sub" id="w2WinsSub">—</div></div>
+      <div class="mini-card"><div class="lbl">Last Winner</div><div class="val" id="w2Last" style="font-size:1rem;padding-top:.2rem">—</div><div class="sub" id="w2LastSub">—</div></div>
+    </div>
+    <div id="w2Content"><div class="spinner-wrap"><div class="spin"></div><span>Loading…</span></div></div>
+  </div>
+
+  <!-- ── The Commissioner ── -->
+  <div class="pool-panel" id="pool5Panel" style="display:none">
+    <div style="text-align:center;padding:2rem 1rem;">
+      <img src="img/commissioner.jpg" alt="Commissioner Hustles"
+           style="max-width:420px;width:100%;border-radius:12px;border:3px solid var(--gold);box-shadow:0 4px 24px rgba(204,52,51,.35);margin-bottom:1.5rem;">
+      <p style="font-size:1.25rem;font-style:italic;color:var(--text);margin-bottom:.6rem;line-height:1.6;">
+        "Men, I wish you the best of luck this season."
+      </p>
+      <p style="font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:1px;">— Commissioner Hustles</p>
     </div>
   </div>
 
@@ -536,10 +597,123 @@ function renderPool(pid, assignments, scores, dates, weekNum, history, weekStatu
 
 // ─── Tab Switch ───────────────────────────────────────────────────────────────
 function showPool(pid) {
-  document.getElementById("pool1Panel").style.display = pid === 1 ? "" : "none";
-  document.getElementById("pool2Panel").style.display = pid === 2 ? "" : "none";
-  document.getElementById("tab1").className = "tab-btn" + (pid===1?" active":"");
-  document.getElementById("tab2").className = "tab-btn" + (pid===2?" active":"");
+  [1,2,3,4,5].forEach(n => {
+    document.getElementById(`pool${n}Panel`).style.display = pid === n ? "" : "none";
+    document.getElementById(`tab${n}`).className = "tab-btn" + (pid===n?" active":"");
+  });
+}
+
+// ─── Winners Tab Helpers ──────────────────────────────────────────────────────
+function wAddDays(dateStr, n) {
+  const d = new Date(dateStr + "T12:00:00");
+  d.setDate(d.getDate() + n);
+  return d.toISOString().slice(0,10);
+}
+function wFmtDate(s) {
+  return new Date(s+"T12:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric"});
+}
+
+function buildWinnersPot(history, currentWeekNum) {
+  let lastWin = 0;
+  for (const h of history) if (h.result==="winner") lastWin = Math.max(lastWin, h.week);
+  return (currentWeekNum - lastWin) * CONFIG.weeklyPot;
+}
+
+function buildLeaderboard(players, history) {
+  const stats = {};
+  players.forEach(p => stats[p] = {wins:0, total:0});
+  history.forEach(h => {
+    if (h.result==="winner" && h.winner) {
+      if (!stats[h.winner]) stats[h.winner] = {wins:0, total:0};
+      stats[h.winner].wins++;
+      stats[h.winner].total += (h.pot||0);
+    }
+  });
+  return Object.entries(stats).sort(([na,a],[nb,b]) =>
+    b.total!==a.total ? b.total-a.total : b.wins!==a.wins ? b.wins-a.wins : na.localeCompare(nb));
+}
+
+function renderWinnersPanel(wid, players, history, currentWeekNum) {
+  const pot = buildWinnersPot(history, currentWeekNum);
+  const wins = history.filter(h=>h.result==="winner").length;
+  const lastWin = [...history].reverse().find(h=>h.result==="winner");
+
+  document.getElementById(`w${wid}Pot`).textContent    = "$"+pot.toLocaleString();
+  document.getElementById(`w${wid}PotSub`).textContent = `Week ${currentWeekNum} · $${CONFIG.weeklyPot}/wk`;
+  document.getElementById(`w${wid}Wins`).textContent   = wins;
+  document.getElementById(`w${wid}WinsSub`).textContent= wins===1?"1 week won":""+wins+" weeks won";
+  document.getElementById(`w${wid}Last`).textContent   = lastWin ? lastWin.winner : "None yet";
+  document.getElementById(`w${wid}LastSub`).textContent= lastWin ? `${lastWin.team} — Wk ${lastWin.week}` : "no winner yet";
+
+  const el = document.getElementById(`w${wid}Content`);
+
+  if (!history.length) {
+    el.innerHTML = `<div class="empty-win"><div class="big">🏁</div><h3>Season just started!</h3><p>Check back after Week 1 results are recorded on Monday, April 20.</p></div>`;
+    return;
+  }
+
+  // Leaderboard
+  const lb = buildLeaderboard(players, history);
+  const topTotal = lb[0]?.[1].total || 0;
+  const lbRows = lb.map(([player,{wins:w,total}],i) => {
+    const gold = total>0 && total===topTotal;
+    return `<tr class="${gold?"row-gold":""}">
+      <td class="lb-rank">${i+1}</td>
+      <td class="lb-name">${player}</td>
+      <td class="lb-wins">${w}</td>
+      <td class="lb-money ${total>0?"pos":"zero"}">${total>0?"$"+total.toLocaleString():"$0"}</td>
+    </tr>`;
+  }).join("");
+
+  // Weekly results
+  let lastWinWk = 0;
+  const wkRows = Array.from({length:CONFIG.totalWeeks},(_,i)=>i+1).map(w => {
+    const pot_w = (w - lastWinWk) * CONFIG.weeklyPot;
+    const wStart = wAddDays(CONFIG.startDate, (w-1)*7);
+    const wEnd   = wAddDays(wStart, 6);
+    const dates  = `${wFmtDate(wStart)} – ${wFmtDate(wEnd)}`;
+    const entry  = history.find(h=>h.week===w);
+    let cls="", badge="", winner="", team="";
+    if (entry) {
+      if (entry.result==="winner") {
+        cls="wk-winner"; badge=`<span class="bdg bdg-win">🏆 Winner</span>`;
+        winner=entry.winner||"—"; team=`<span style="color:var(--bllt)">${entry.team||""}</span>`;
+        lastWinWk = w;
+      } else if (entry.result==="tie") {
+        cls="wk-tie"; badge=`<span class="bdg bdg-tie">🔁 Tie / Rollover</span>`;
+      } else {
+        cls="wk-roll"; badge=`<span class="bdg bdg-rollover">↩️ Rollover</span>`;
+      }
+    } else if (w===currentWeekNum) {
+      badge=`<span class="bdg bdg-inprog">⏳ In Progress</span>`;
+    } else if (w<currentWeekNum) {
+      cls="wk-roll"; badge=`<span class="bdg bdg-rollover">Pending</span>`;
+    } else {
+      cls="wk-future";
+    }
+    return `<tr class="${cls}">
+      <td style="font-weight:700;color:var(--gold)">${w}</td>
+      <td style="color:var(--muted);font-size:.78rem">${dates}</td>
+      <td style="font-weight:600">$${pot_w.toLocaleString()}</td>
+      <td>${badge}</td>
+      <td>${winner}</td>
+      <td>${team}</td>
+    </tr>`;
+  }).join("");
+
+  el.innerHTML = `
+    <div class="section">
+      <div class="sec-head"><h3>🥇 Player Leaderboard</h3></div>
+      <div class="tbl-wrap"><table class="htbl"><thead><tr>
+        <th>#</th><th>Player</th><th class="center">Wins</th><th class="right">Total Winnings</th>
+      </tr></thead><tbody>${lbRows}</tbody></table></div>
+    </div>
+    <div class="section">
+      <div class="sec-head"><h3>📋 Weekly Results</h3></div>
+      <div class="tbl-wrap"><table class="htbl"><thead><tr>
+        <th>Week</th><th>Dates</th><th>Pot</th><th>Result</th><th>Winner</th><th>Team</th>
+      </tr></thead><tbody>${wkRows}</tbody></table></div>
+    </div>`;
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -550,44 +724,53 @@ async function run() {
 
   renderWeekBar(weekNum, dates);
 
-  // Fetch scores (shared between both pools — same MLB games)
-  let scores = {};
-  try {
-    const data = await fetchScores(dates[0], dates[6]);
-    scores = parseScores(data);
-  } catch(e) {
-    console.error("Score fetch failed:", e);
-  }
+  // Fetch scores + history in parallel
+  let scores = {}, history = {pool1:[], pool2:[]};
+  const [scoreResult, histResult] = await Promise.allSettled([
+    fetchScores(dates[0], dates[6]),
+    fetch("data/history.json").then(r=>r.json())
+  ]);
+  if (scoreResult.status==="fulfilled") scores = parseScores(scoreResult.value);
+  else console.error("Score fetch failed:", scoreResult.reason);
+  if (histResult.status==="fulfilled") history = histResult.value;
+  else console.error("History fetch failed:", histResult.reason);
 
-  // Pool 1
+  const h1 = history.pool1 || [];
+  const h2 = history.pool2 || [];
+
+  // ── Score Tabs (Pool 1 & 2) ──
   try {
     const a1 = CONFIG.currentWeek.pool1;
-    const h1 = CONFIG.weekHistory.pool1 || [];
     const {winners:w1, highlights:hl1} = findWinners(a1, scores, dates);
     let st1 = "pending";
-    if (w1.length === 1) st1 = "winner";
-    else if (w1.length > 1) st1 = "tie";
-    else if (dates[6] < today) st1 = "rollover";
+    if (w1.length===1) st1="winner";
+    else if (w1.length>1) st1="tie";
+    else if (dates[6]<today) st1="rollover";
     renderPool(1, a1, scores, dates, weekNum, h1, st1, w1, hl1);
   } catch(e) {
     console.error("Pool 1 error:", e);
     document.getElementById("p1Tbl").innerHTML = `<div class="spinner-wrap" style="color:var(--red)">⚠️ Error rendering Pool 1</div>`;
   }
 
-  // Pool 2
   try {
     const a2 = CONFIG.currentWeek.pool2;
-    const h2 = CONFIG.weekHistory.pool2 || [];
     const {winners:w2, highlights:hl2} = findWinners(a2, scores, dates);
     let st2 = "pending";
-    if (w2.length === 1) st2 = "winner";
-    else if (w2.length > 1) st2 = "tie";
-    else if (dates[6] < today) st2 = "rollover";
+    if (w2.length===1) st2="winner";
+    else if (w2.length>1) st2="tie";
+    else if (dates[6]<today) st2="rollover";
     renderPool(2, a2, scores, dates, weekNum, h2, st2, w2, hl2);
   } catch(e) {
     console.error("Pool 2 error:", e);
     document.getElementById("p2Tbl").innerHTML = `<div class="spinner-wrap" style="color:var(--red)">⚠️ Error rendering Pool 2</div>`;
   }
+
+  // ── Winners Tabs (Pool 1 & 2) ──
+  try { renderWinnersPanel(1, CONFIG.currentWeek.pool1.map(a=>a.player), h1, weekNum); }
+  catch(e) { console.error("Winners 1 error:", e); }
+
+  try { renderWinnersPanel(2, CONFIG.currentWeek.pool2.map(a=>a.player), h2, weekNum); }
+  catch(e) { console.error("Winners 2 error:", e); }
 
   document.getElementById("lastUpd").textContent = "Last updated: " + new Date().toLocaleTimeString();
 
