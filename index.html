@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLB 13 Run Pool 2026</title>
+  <style>
+    :root {
+      --bg:     #0d1b2a;
+      --bg2:    #1a2f4a;
+      --bg3:    #1e3a5f;
+      --gold:   #f4c430;
+      --green:  #28a745;
+      --glt:    #75d48a;
+      --yellow: #ffd700;
+      --bllt:   #6ea8fe;
+      --muted:  #8a9bb0;
+      --border: #2d4a6e;
+      --text:   #e8e8e8;
+      --red:    #dc3545;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; font-size: 14px; }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #0a1520, #1a2f4a 50%, #0a1520);
+      border-bottom: 3px solid var(--gold);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+    header h1 { font-size: clamp(1.5rem,5vw,2.4rem); font-weight: 800; color: var(--gold); letter-spacing: 1px; text-shadow: 0 2px 14px rgba(244,196,48,.3); }
+    header p  { color: var(--muted); font-size: .85rem; margin-top: .2rem; }
+
+    /* ── Week Bar ── */
+    #weekBar {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 1.5rem; padding: .75rem 1rem; font-size: .85rem;
+    }
+    .wbItem { text-align: center; }
+    .wbItem .wlbl { color: var(--muted); font-size: .68rem; text-transform: uppercase; letter-spacing: .8px; }
+    .wbItem .wval { font-weight: 700; color: var(--gold); font-size: 1.05rem; }
+    .wbItem .wval.blue  { color: var(--bllt); }
+    .wbItem .wval.green { color: var(--glt); }
+
+    /* ── Draw Reminder ── */
+    #drawReminder {
+      background: rgba(244,196,48,.1); border: 1px solid rgba(244,196,48,.35);
+      color: var(--gold); text-align: center; padding: .55rem 1rem; font-size: .82rem; font-weight: 500;
+    }
+
+    /* ── Main ── */
+    main { max-width: 1500px; margin: 0 auto; padding: 1.1rem 1rem 3rem; }
+
+    /* ── Tabs ── */
+    .tabs { display: flex; gap: .5rem; margin-bottom: 1.1rem; }
+    .tab-btn {
+      flex: 1; max-width: 200px; padding: .6rem 1.2rem;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px 8px 0 0; color: var(--muted);
+      font-size: .9rem; font-weight: 600; cursor: pointer;
+      transition: all .15s; border-bottom: none;
+    }
+    .tab-btn.active { background: var(--bg3); color: var(--gold); border-color: var(--gold); }
+    .tab-btn:hover:not(.active) { color: var(--text); }
+
+    /* ── Pool Panel ── */
+    .pool-panel { background: var(--bg3); border: 1px solid var(--border); border-radius: 0 8px 8px 8px; padding: 1.1rem; }
+
+    /* ── Mini Cards ── */
+    .cards-row { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem; margin-bottom: 1rem; }
+    @media(max-width:580px){ .cards-row { grid-template-columns: 1fr; } }
+    .mini-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: .9rem; text-align: center; }
+    .mini-card .lbl { color: var(--muted); font-size: .66rem; text-transform: uppercase; letter-spacing: .8px; margin-bottom: .3rem; }
+    .mini-card .val { font-size: 1.5rem; font-weight: 700; color: var(--gold); line-height: 1.1; }
+    .mini-card .sub { font-size: .72rem; color: var(--muted); margin-top: .2rem; }
+
+    /* ── Banner ── */
+    .banner { border-radius: 8px; padding: .75rem 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem; font-weight: 500; font-size: .9rem; }
+    .banner.pending  { background: rgba(13,110,253,.12); border: 1px solid rgba(13,110,253,.35); color: var(--bllt); }
+    .banner.winner   { background: rgba(40,167,69,.12);  border: 1px solid rgba(40,167,69,.35);  color: var(--glt); }
+    .banner.rollover { background: rgba(255,193,7,.12);  border: 1px solid rgba(255,193,7,.35);  color: var(--yellow); }
+
+    /* ── Section ── */
+    .section { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1rem; }
+    .sec-head { padding: .75rem 1.1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .sec-head h3 { font-size: .9rem; font-weight: 700; }
+    .sec-head span { font-size: .72rem; color: var(--muted); }
+
+    /* ── Highlights ── */
+    .hl-game { display: flex; align-items: center; justify-content: space-between; padding: .65rem 1.1rem; border-bottom: 1px solid var(--border); background: rgba(40,167,69,.07); }
+    .hl-game:last-child { border-bottom: none; }
+    .hl-score { font-size: 1.15rem; font-weight: 700; color: var(--gold); }
+
+    /* ── Table ── */
+    .tbl-wrap { overflow-x: auto; }
+    table.ptbl { width: 100%; border-collapse: collapse; white-space: nowrap; }
+    table.ptbl th {
+      background: rgba(0,0,0,.3); padding: .45rem .6rem;
+      font-size: .65rem; text-transform: uppercase; letter-spacing: .5px;
+      color: var(--muted); text-align: center;
+    }
+    table.ptbl th:nth-child(1),
+    table.ptbl th:nth-child(2),
+    table.ptbl th:nth-child(3) { text-align: left; }
+    table.ptbl td { padding: .45rem .6rem; border-bottom: 1px solid var(--border); text-align: center; vertical-align: middle; }
+    table.ptbl td:nth-child(1) { color: var(--muted); font-size: .75rem; text-align: left; width: 28px; }
+    table.ptbl td:nth-child(2) { font-weight: 500; text-align: left; }
+    table.ptbl td:nth-child(3) { text-align: left; min-width: 175px; }
+    table.ptbl tr:last-child td { border-bottom: none; }
+    table.ptbl tr:hover { background: rgba(255,255,255,.025); }
+    .row-win td:nth-child(2) { border-left: 3px solid var(--green); }
+    .row-win { background: rgba(40,167,69,.07) !important; }
+    .row-tie td:nth-child(2) { border-left: 3px solid #ffc107; }
+    .row-tie { background: rgba(255,193,7,.06) !important; }
+
+    .sc { min-width: 36px; font-variant-numeric: tabular-nums; }
+    .sc.hit  { background: rgba(40,167,69,.28); color: var(--glt); font-weight: 700; border-radius: 3px; }
+    .sc.none { color: #3a4f65; }
+    .sc.fut  { color: #2d3f54; font-size: .7rem; }
+
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+    .bdg { display: inline-block; border-radius: 20px; padding: .16rem .5rem; font-size: .65rem; font-weight: 600; white-space: nowrap; }
+    .bdg-win { background: rgba(40,167,69,.2);  color: var(--glt);   border: 1px solid rgba(40,167,69,.4); }
+    .bdg-tie { background: rgba(255,193,7,.2);  color: var(--yellow); border: 1px solid rgba(255,193,7,.3); }
+    .bdg-ok  { background: rgba(13,110,253,.15);color: var(--bllt);  border: 1px solid rgba(13,110,253,.3); }
+
+    /* ── History ── */
+    .hist-row { display: flex; align-items: center; gap: .8rem; padding: .55rem 1.1rem; border-bottom: 1px solid var(--border); font-size: .82rem; flex-wrap: wrap; }
+    .hist-row:last-child { border-bottom: none; }
+    .hist-wk { font-weight: 700; color: var(--gold); min-width: 55px; }
+    .hist-dt { color: var(--muted); min-width: 115px; font-size: .75rem; }
+
+    /* ── No data message ── */
+    .no-data { padding: 1.5rem; text-align: center; color: var(--muted); font-size: .85rem; }
+
+    /* ── Loading ── */
+    .spinner-wrap { display: flex; align-items: center; justify-content: center; gap: .7rem; padding: 2.5rem; color: var(--muted); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { width: 20px; height: 20px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin .7s linear infinite; flex-shrink: 0; }
+
+    /* ── Footer ── */
+    .last-upd { text-align: center; color: var(--muted); font-size: .7rem; padding: .6rem 0 .2rem; }
+    footer { text-align: center; padding: 1rem; color: var(--muted); font-size: .72rem; border-top: 1px solid var(--border); margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚾ MLB 13 Run Pool</h1>
+  <p>2026 Season &bull; 2 Pools &bull; 24 Weeks &bull; Score exactly 13 runs in a game to win</p>
+</header>
+
+<!-- Week Info Bar -->
+<div id="weekBar">
+  <div class="wbItem"><div class="wlbl">Current Week</div><div class="wval" id="wbWeek">—</div></div>
+  <div class="wbItem"><div class="wlbl">Week Dates</div><div class="wval blue" id="wbDates">—</div></div>
+  <div class="wbItem"><div class="wlbl">Days Left in Week</div><div class="wval" id="wbDays">—</div></div>
+  <div class="wbItem"><div class="wlbl">Weeks Remaining</div><div class="wval green" id="wbRemain">—</div></div>
+  <div class="wbItem"><div class="wlbl">Season Ends</div><div class="wval" id="wbEnd">—</div></div>
+</div>
+
+<!-- Monday draw reminder (shown Mondays only) -->
+<div id="drawReminder" style="display:none">
+  🎲 New week! Update <code>config.js</code> with today's 7am random draw results for both pools.
+</div>
+
+<main>
+  <!-- Pool Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" id="tab1" onclick="showPool(1)">Pool #1</button>
+    <button class="tab-btn"        id="tab2" onclick="showPool(2)">Pool #2</button>
+  </div>
+
+  <!-- ── Pool #1 ── -->
+  <div class="pool-panel" id="pool1Panel">
+    <div class="cards-row">
+      <div class="mini-card">
+        <div class="lbl">Current Pot</div>
+        <div class="val" id="p1Pot">—</div>
+        <div class="sub" id="p1PotSub">—</div>
+      </div>
+      <div class="mini-card">
+        <div class="lbl">Week Status</div>
+        <div class="val" id="p1Status" style="font-size:1rem;padding-top:.25rem">—</div>
+        <div class="sub" id="p1StatusSub">—</div>
+      </div>
+      <div class="mini-card">
+        <div class="lbl">Total Paid Out</div>
+        <div class="val" id="p1Won">$0</div>
+        <div class="sub" id="p1WonSub">no winner yet</div>
+      </div>
+    </div>
+    <div class="banner pending" id="p1Banner"><span id="p1BIcon">⏳</span><span id="p1BText">Loading…</span></div>
+    <div class="section" id="p1HlSec" style="display:none">
+      <div class="sec-head"><h3>🎯 13-Run Games This Week</h3></div>
+      <div id="p1HlList"></div>
+    </div>
+    <div class="section">
+      <div class="sec-head"><h3>🏟️ Participants</h3><span id="p1TblLbl">—</span></div>
+      <div class="tbl-wrap"><div id="p1Tbl"><div class="spinner-wrap"><div class="spin"></div><span>Loading scores…</span></div></div></div>
+    </div>
+    <div class="section" id="p1HistSec" style="display:none">
+      <div class="sec-head"><h3>📋 Week History</h3></div>
+      <div id="p1Hist"></div>
+    </div>
+  </div>
+
+  <!-- ── Pool #2 ── -->
+  <div class="pool-panel" id="pool2Panel" style="display:none">
+    <div class="cards-row">
+      <div class="mini-card">
+        <div class="lbl">Current Pot</div>
+        <div class="val" id="p2Pot">—</div>
+        <div class="sub" id="p2PotSub">—</div>
+      </div>
+      <div class="mini-card">
+        <div class="lbl">Week Status</div>
+        <div class="val" id="p2Status" style="font-size:1rem;padding-top:.25rem">—</div>
+        <div class="sub" id="p2StatusSub">—</div>
+      </div>
+      <div class="mini-card">
+        <div class="lbl">Total Paid Out</div>
+        <div class="val" id="p2Won">$0</div>
+        <div class="sub" id="p2WonSub">no winner yet</div>
+      </div>
+    </div>
+    <div class="banner pending" id="p2Banner"><span id="p2BIcon">⏳</span><span id="p2BText">Loading…</span></div>
+    <div class="section" id="p2HlSec" style="display:none">
+      <div class="sec-head"><h3>🎯 13-Run Games This Week</h3></div>
+      <div id="p2HlList"></div>
+    </div>
+    <div class="section">
+      <div class="sec-head"><h3>🏟️ Participants</h3><span id="p2TblLbl">—</span></div>
+      <div class="tbl-wrap"><div id="p2Tbl"><div class="spinner-wrap"><div class="spin"></div><span>Loading scores…</span></div></div></div>
+    </div>
+    <div class="section" id="p2HistSec" style="display:none">
+      <div class="sec-head"><h3>📋 Week History</h3></div>
+      <div id="p2Hist"></div>
+    </div>
+  </div>
+
+  <div class="last-upd" id="lastUpd"></div>
+</main>
+
+<footer>MLB 13 Run Pool &bull; Live scores from MLB Stats API &bull; New random draw every Monday at 7am CT &bull; Auto-refreshes every 5 min</footer>
+
+<script src="config.js"></script>
+<script>
+// ─── MLB Team Data ────────────────────────────────────────────────────────────
+const TEAMS = {
+  ARI:{name:"Arizona Diamondbacks", id:109, color:"#A71930"},
+  ATL:{name:"Atlanta Braves",        id:144, color:"#CE1141"},
+  BAL:{name:"Baltimore Orioles",     id:110, color:"#DF4601"},
+  BOS:{name:"Boston Red Sox",        id:111, color:"#BD3039"},
+  CHC:{name:"Chicago Cubs",          id:112, color:"#0E3386"},
+  CWS:{name:"Chicago White Sox",     id:145, color:"#C4CED4"},
+  CIN:{name:"Cincinnati Reds",       id:113, color:"#C6011F"},
+  CLE:{name:"Cleveland Guardians",   id:114, color:"#00385D"},
+  COL:{name:"Colorado Rockies",      id:115, color:"#33006F"},
+  DET:{name:"Detroit Tigers",        id:116, color:"#FA4616"},
+  HOU:{name:"Houston Astros",        id:117, color:"#EB6E1F"},
+  KC: {name:"Kansas City Royals",    id:118, color:"#004687"},
+  LAA:{name:"Los Angeles Angels",    id:108, color:"#BA0021"},
+  LAD:{name:"Los Angeles Dodgers",   id:119, color:"#005A9C"},
+  MIA:{name:"Miami Marlins",         id:146, color:"#00A3E0"},
+  MIL:{name:"Milwaukee Brewers",     id:158, color:"#12284B"},
+  MIN:{name:"Minnesota Twins",       id:142, color:"#002B5C"},
+  NYM:{name:"New York Mets",         id:121, color:"#002D72"},
+  NYY:{name:"New York Yankees",      id:147, color:"#003087"},
+  ATH:{name:"Oakland A's",           id:133, color:"#003831"},
+  PHI:{name:"Philadelphia Phillies", id:143, color:"#E81828"},
+  PIT:{name:"Pittsburgh Pirates",    id:134, color:"#FDB827"},
+  STL:{name:"St. Louis Cardinals",   id:138, color:"#C41E3A"},
+  SD: {name:"San Diego Padres",      id:135, color:"#2F241D"},
+  SF: {name:"San Francisco Giants",  id:137, color:"#FD5A1E"},
+  SEA:{name:"Seattle Mariners",      id:136, color:"#005C5C"},
+  TB: {name:"Tampa Bay Rays",        id:139, color:"#092C5C"},
+  TEX:{name:"Texas Rangers",         id:140, color:"#003278"},
+  TOR:{name:"Toronto Blue Jays",     id:141, color:"#134A8E"},
+  WSH:{name:"Washington Nationals",  id:120, color:"#AB0003"},
+};
+
+const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+// ─── Date Helpers ─────────────────────────────────────────────────────────────
+function weekDates(mondayStr) {
+  const out = [], base = new Date(mondayStr + "T12:00:00");
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(base);
+    d.setDate(base.getDate() + i);
+    out.push(d.toISOString().slice(0,10));
+  }
+  return out;
+}
+
+function fmtRange(s, e) {
+  const o = {month:"short",day:"numeric"};
+  return new Date(s+"T12:00:00").toLocaleDateString("en-US",o) +
+         " – " + new Date(e+"T12:00:00").toLocaleDateString("en-US",o);
+}
+
+function fmtFull(d) {
+  return new Date(d+"T12:00:00").toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric"});
+}
+
+// Season end = Sunday of last week
+function seasonEndStr() {
+  const base = new Date(CONFIG.startDate + "T12:00:00");
+  base.setDate(base.getDate() + (CONFIG.totalWeeks - 1) * 7 + 6);
+  return base.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+}
+
+// Days left in week (Mon=7 ... Sun=1, after Sunday=0)
+function daysLeftInWeek(mondayStr) {
+  const sunday = new Date(mondayStr + "T23:59:59");
+  sunday.setDate(sunday.getDate() + 6);
+  const now = new Date();
+  if (now > sunday) return 0;
+  return Math.min(7, Math.ceil((sunday - now) / 86400000));
+}
+
+// Current week number based on config.currentWeek (set manually)
+// Falls back to date-based calc if needed
+function getCurrentWeek() {
+  return CONFIG.currentWeek.number;
+}
+
+// Pot = $125 × weeks since last win (per pool)
+function calcPot(history) {
+  let lastWin = 0;
+  for (const h of history) if (h.result === "winner") lastWin = Math.max(lastWin, h.week);
+  return (CONFIG.currentWeek.number - lastWin) * CONFIG.weeklyPot;
+}
+
+// Total paid out this season
+function calcTotalWon(history) {
+  let total = 0, lastWin = 0;
+  const sorted = [...history].sort((a,b) => a.week - b.week);
+  for (const h of sorted) {
+    if (h.result === "winner") {
+      total += (h.week - lastWin) * CONFIG.weeklyPot;
+      lastWin = h.week;
+    }
+  }
+  return total;
+}
+
+// Weeks remaining (not yet started, not current)
+function weeksRemaining() {
+  return CONFIG.totalWeeks - CONFIG.currentWeek.number;
+}
+
+// ─── MLB Stats API ────────────────────────────────────────────────────────────
+async function fetchScores(start, end) {
+  const url = `https://statsapi.mlb.com/api/v1/schedule?sportId=1&startDate=${start}&endDate=${end}&hydrate=linescore`;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  return r.json();
+}
+
+// Returns { teamId: { "YYYY-MM-DD": [score, ...] } }
+function parseScores(data) {
+  const out = {};
+  for (const dateObj of (data.dates || [])) {
+    for (const game of (dateObj.games || [])) {
+      const state = game.status?.abstractGameState;
+      if (state !== "Final" && state !== "Live") continue;
+      const d = dateObj.date;
+      [[game.teams?.away, game.teams?.away?.score],
+       [game.teams?.home, game.teams?.home?.score]].forEach(([side, runs]) => {
+        const id = side?.team?.id;
+        if (id == null || runs == null) return;
+        if (!out[id]) out[id] = {};
+        if (!out[id][d]) out[id][d] = [];
+        out[id][d].push(runs);
+      });
+    }
+  }
+  return out;
+}
+
+// ─── Analysis ────────────────────────────────────────────────────────────────
+function findWinners(assignments, scores, dates) {
+  const winners = [], highlights = [];
+  for (const {player, team} of assignments) {
+    const td = TEAMS[team];
+    if (!td) continue;
+    for (const date of dates) {
+      for (const s of (scores[td.id]?.[date] || [])) {
+        if (s === 13) {
+          if (!winners.find(w => w.player === player)) winners.push({player, team});
+          highlights.push({date, team, player});
+        }
+      }
+    }
+  }
+  return {winners, highlights};
+}
+
+// ─── Render: Week Bar ─────────────────────────────────────────────────────────
+function renderWeekBar(weekNum, dates) {
+  document.getElementById("wbWeek").textContent  = `Week ${weekNum} of ${CONFIG.totalWeeks}`;
+  document.getElementById("wbDates").textContent = fmtRange(dates[0], dates[6]);
+  document.getElementById("wbDays").textContent  = daysLeftInWeek(dates[0]) + " day(s)";
+  document.getElementById("wbRemain").textContent= weeksRemaining() + " week(s)";
+  document.getElementById("wbEnd").textContent   = seasonEndStr();
+
+  // Show Monday reminder if today is Monday
+  const dayOfWeek = new Date().getDay(); // 0=Sun, 1=Mon
+  document.getElementById("drawReminder").style.display = dayOfWeek === 1 ? "" : "none";
+}
+
+// ─── Render: Pool ─────────────────────────────────────────────────────────────
+function renderPool(pid, assignments, scores, dates, weekNum, history, weekStatus, winners, highlights) {
+  const pot  = calcPot(history);
+  const won  = calcTotalWon(history);
+  const isTie = winners.length > 1;
+  const nextPot = pot + CONFIG.weeklyPot;
+
+  // ── Cards ──
+  document.getElementById(`p${pid}Pot`).textContent    = "$" + pot.toLocaleString();
+  document.getElementById(`p${pid}PotSub`).textContent = `Week ${weekNum} · $${CONFIG.weeklyPot}/wk`;
+  document.getElementById(`p${pid}Won`).textContent    = "$" + won.toLocaleString();
+  document.getElementById(`p${pid}WonSub`).textContent = won > 0 ? "paid out this season" : "no winner yet";
+
+  const stEl  = document.getElementById(`p${pid}Status`);
+  const stSub = document.getElementById(`p${pid}StatusSub`);
+  if (weekStatus === "winner") {
+    stEl.textContent = "Winner! 🏆"; stEl.style.color = "var(--glt)";
+    stSub.textContent = winners[0]?.player || "";
+  } else if (weekStatus === "rollover" || weekStatus === "tie") {
+    stEl.textContent = "Rolled Over ↩️"; stEl.style.color = "var(--yellow)";
+    stSub.textContent = weekStatus === "tie" ? "Tie — multiple 13s" : "No 13-run games";
+  } else {
+    stEl.textContent = "In Progress"; stEl.style.color = "var(--bllt)";
+    stSub.textContent = "Tracking live";
+  }
+
+  // ── Banner ──
+  const banner = document.getElementById(`p${pid}Banner`);
+  banner.className = "banner " + (weekStatus === "winner" ? "winner" : weekStatus === "rollover" || weekStatus === "tie" ? "rollover" : "pending");
+  document.getElementById(`p${pid}BIcon`).textContent = weekStatus === "winner" ? "🏆" : weekStatus === "tie" ? "🔁" : weekStatus === "rollover" ? "↩️" : "⏳";
+  if (weekStatus === "winner" && !isTie) {
+    document.getElementById(`p${pid}BText`).textContent =
+      `Week ${weekNum} Winner: ${winners[0].player} — ${TEAMS[winners[0].team]?.name||winners[0].team} scored 13! Wins $${pot}!`;
+  } else if (weekStatus === "tie") {
+    document.getElementById(`p${pid}BText`).textContent =
+      `Tie — multiple teams scored 13. Pot rolls to $${nextPot}! (${winners.map(w=>w.player).join(", ")})`;
+  } else if (weekStatus === "rollover") {
+    document.getElementById(`p${pid}BText`).textContent =
+      `No 13-run games this week — pot rolls to $${nextPot} next week!`;
+  } else {
+    document.getElementById(`p${pid}BText`).textContent =
+      `Week ${weekNum} in progress — score exactly 13 runs in any game to win $${pot}! New draw every Monday at 7am CT.`;
+  }
+
+  // ── Highlights ──
+  const hlSec = document.getElementById(`p${pid}HlSec`);
+  if (highlights.length) {
+    hlSec.style.display = "";
+    document.getElementById(`p${pid}HlList`).innerHTML = highlights.map(h => `
+      <div class="hl-game">
+        <div>
+          <span class="dot" style="background:${TEAMS[h.team]?.color||'#999'}"></span>
+          <strong>${TEAMS[h.team]?.name||h.team}</strong>
+          &mdash; <span style="color:var(--muted)">${fmtFull(h.date)}</span>
+          <span style="margin-left:.5rem;color:var(--muted);font-size:.78rem">Player: ${h.player}</span>
+        </div>
+        <div class="hl-score">13 ✓</div>
+      </div>`).join("");
+  } else {
+    hlSec.style.display = "none";
+  }
+
+  // ── Participants Table ──
+  document.getElementById(`p${pid}TblLbl`).textContent = `Week ${weekNum} · ${fmtRange(dates[0], dates[6])}`;
+  const today  = new Date().toISOString().slice(0,10);
+  const winSet = new Set(winners.map(w => w.player));
+
+  let html = `<table class="ptbl"><thead><tr>
+    <th>#</th><th>Player</th><th>Team</th>
+    ${dates.map((d,i) => `<th>${DAYS[i]}<br><span style="font-weight:400;font-size:.6rem">${d.slice(5)}</span></th>`).join("")}
+    <th>Status</th>
+  </tr></thead><tbody>`;
+
+  assignments.forEach(({player, team}, i) => {
+    const td    = TEAMS[team];
+    const isWin = winSet.has(player);
+    const rCls  = isWin ? (isTie ? "row-tie" : "row-win") : "";
+    const cells = dates.map(date => {
+      if (!td) return `<td class="sc none">—</td>`;
+      const day = scores[td.id]?.[date];
+      if (!day?.length) return `<td class="sc ${date > today ? "fut" : "none"}">—</td>`;
+      const has13 = day.some(s => s === 13);
+      return `<td class="sc${has13 ? " hit" : ""}">${day.join("/")}</td>`;
+    });
+    const bdg = isWin && !isTie
+      ? `<span class="bdg bdg-win">🏆 Winner!</span>`
+      : isWin
+      ? `<span class="bdg bdg-tie">🔁 Tie</span>`
+      : `<span class="bdg bdg-ok">Active</span>`;
+
+    html += `<tr class="${rCls}">
+      <td>${i+1}</td>
+      <td>${player}</td>
+      <td><span class="dot" style="background:${td?.color||'#555'}"></span>${td?.name||team}</td>
+      ${cells.join("")}
+      <td>${bdg}</td>
+    </tr>`;
+  });
+  html += "</tbody></table>";
+  document.getElementById(`p${pid}Tbl`).innerHTML = html;
+
+  // ── Week History ──
+  const histSec = document.getElementById(`p${pid}HistSec`);
+  if (history.length) {
+    histSec.style.display = "";
+    document.getElementById(`p${pid}Hist`).innerHTML = [...history].reverse().map(w => {
+      const wDates = weekDates(w.startDate);
+      let icon, detail, color;
+      if (w.result === "winner") {
+        icon="🏆"; color="var(--glt)";
+        const amt = w.pot || "—";
+        detail = `${w.winner} won $${amt}! (${TEAMS[w.team]?.name||w.team})`;
+      } else if (w.result === "tie") {
+        icon="🔁"; color="var(--yellow)"; detail=`Tie — ${w.notes||"multiple 13-run games"}`;
+      } else {
+        icon="↩️"; color="var(--muted)"; detail=`Rolled over — ${w.notes||"no 13-run games"}`;
+      }
+      return `<div class="hist-row">
+        <span class="hist-wk">Wk ${w.week}</span>
+        <span class="hist-dt">${fmtRange(wDates[0],wDates[6])}</span>
+        <span>${icon}</span>
+        <span style="color:${color}">${detail}</span>
+      </div>`;
+    }).join("");
+  } else {
+    histSec.style.display = "none";
+  }
+}
+
+// ─── Tab Switch ───────────────────────────────────────────────────────────────
+function showPool(pid) {
+  document.getElementById("pool1Panel").style.display = pid === 1 ? "" : "none";
+  document.getElementById("pool2Panel").style.display = pid === 2 ? "" : "none";
+  document.getElementById("tab1").className = "tab-btn" + (pid===1?" active":"");
+  document.getElementById("tab2").className = "tab-btn" + (pid===2?" active":"");
+}
+
+// ─── Main ─────────────────────────────────────────────────────────────────────
+async function run() {
+  const weekNum = getCurrentWeek();
+  const dates   = weekDates(CONFIG.currentWeek.startDate);
+  const today   = new Date().toISOString().slice(0,10);
+
+  renderWeekBar(weekNum, dates);
+
+  // Fetch scores (shared between both pools — same MLB games)
+  let scores = {};
+  try {
+    const data = await fetchScores(dates[0], dates[6]);
+    scores = parseScores(data);
+  } catch(e) {
+    console.error("Score fetch failed:", e);
+  }
+
+  // Pool 1
+  try {
+    const a1 = CONFIG.currentWeek.pool1;
+    const h1 = CONFIG.weekHistory.pool1 || [];
+    const {winners:w1, highlights:hl1} = findWinners(a1, scores, dates);
+    let st1 = "pending";
+    if (w1.length === 1) st1 = "winner";
+    else if (w1.length > 1) st1 = "tie";
+    else if (dates[6] < today) st1 = "rollover";
+    renderPool(1, a1, scores, dates, weekNum, h1, st1, w1, hl1);
+  } catch(e) {
+    console.error("Pool 1 error:", e);
+    document.getElementById("p1Tbl").innerHTML = `<div class="spinner-wrap" style="color:var(--red)">⚠️ Error rendering Pool 1</div>`;
+  }
+
+  // Pool 2
+  try {
+    const a2 = CONFIG.currentWeek.pool2;
+    const h2 = CONFIG.weekHistory.pool2 || [];
+    const {winners:w2, highlights:hl2} = findWinners(a2, scores, dates);
+    let st2 = "pending";
+    if (w2.length === 1) st2 = "winner";
+    else if (w2.length > 1) st2 = "tie";
+    else if (dates[6] < today) st2 = "rollover";
+    renderPool(2, a2, scores, dates, weekNum, h2, st2, w2, hl2);
+  } catch(e) {
+    console.error("Pool 2 error:", e);
+    document.getElementById("p2Tbl").innerHTML = `<div class="spinner-wrap" style="color:var(--red)">⚠️ Error rendering Pool 2</div>`;
+  }
+
+  document.getElementById("lastUpd").textContent = "Last updated: " + new Date().toLocaleTimeString();
+
+  // Auto-refresh every 5 minutes
+  setTimeout(run, 5 * 60 * 1000);
+}
+
+run();
+</script>
+</body>
+</html>
