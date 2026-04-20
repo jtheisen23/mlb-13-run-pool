@@ -1,1 +1,18 @@
-{"pool1":[],"pool2":[]}
+{
+  "pool1": [
+    {
+      "week": 1,
+      "startDate": "2026-04-13",
+      "result": "tie",
+      "notes": "Tie — Harley Piercy (MIN), Pat Fisher (NYY), Tom Zarndt (PHI) all had teams that scored 13. Pot rolls over."
+    }
+  ],
+  "pool2": [
+    {
+      "week": 1,
+      "startDate": "2026-04-13",
+      "result": "tie",
+      "notes": "Tie — Trevor Benson (MIN), Jason Segebrecht (NYY), Tom Rogers (PHI) all had teams that scored 13. Pot rolls over."
+    }
+  ]
+}
