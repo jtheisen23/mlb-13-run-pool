@@ -718,6 +718,15 @@ function renderWinnersPanel(wid, players, history, currentWeekNum) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 async function run() {
+  // data/current-week.json is the source of truth — kept fresh every Monday by
+  // the weekly-draw GitHub Action. config.js only acts as a fallback.
+  try {
+    const cw = await fetch("data/current-week.json", {cache:"no-store"}).then(r=>r.json());
+    CONFIG.currentWeek = cw;
+  } catch (e) {
+    console.error("current-week.json fetch failed, falling back to config.js:", e);
+  }
+
   const weekNum = getCurrentWeek();
   const dates   = weekDates(CONFIG.currentWeek.startDate);
   const today   = new Date().toISOString().slice(0,10);
@@ -728,7 +737,7 @@ async function run() {
   let scores = {}, history = {pool1:[], pool2:[]};
   const [scoreResult, histResult] = await Promise.allSettled([
     fetchScores(dates[0], dates[6]),
-    fetch("data/history.json").then(r=>r.json())
+    fetch("data/history.json", {cache:"no-store"}).then(r=>r.json())
   ]);
   if (scoreResult.status==="fulfilled") scores = parseScores(scoreResult.value);
   else console.error("Score fetch failed:", scoreResult.reason);
