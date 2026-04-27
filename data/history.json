@@ -5,6 +5,12 @@
       "startDate": "2026-04-13",
       "result": "tie",
       "notes": "Tie — Harley Piercy (MIN), Pat Fisher (NYY), Tom Zarndt (PHI) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 2,
+      "startDate": "2026-04-20",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ],
   "pool2": [
@@ -13,6 +19,12 @@
       "startDate": "2026-04-13",
       "result": "tie",
       "notes": "Tie — Trevor Benson (MIN), Jason Segebrecht (NYY), Tom Rogers (PHI) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 2,
+      "startDate": "2026-04-20",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ]
 }
