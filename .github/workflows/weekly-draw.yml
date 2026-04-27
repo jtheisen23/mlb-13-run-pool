@@ -1,9 +1,16 @@
 name: "🔄 Weekly Player Rotation"
 
 on:
-  schedule:
-    - cron: '0 12 * * 1'   # Monday 12:00 UTC = 7:00am CDT
+  workflow_run:
+    workflows: ["📊 Record Weekly Results"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
+
+# Runs automatically right after "Record Weekly Results" finishes successfully
+# (which itself is scheduled for Monday 11:00 UTC). Chaining off workflow_run
+# instead of a separate cron avoids GitHub silently dropping one of two
+# independent scheduled triggers.
 
 permissions:
   contents: write
@@ -11,9 +18,14 @@ permissions:
 jobs:
   draw:
     runs-on: ubuntu-latest
+    # Skip if the upstream "Record Weekly Results" run failed.
+    # (Always run for manual workflow_dispatch.)
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
