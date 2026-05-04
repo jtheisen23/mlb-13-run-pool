@@ -11,6 +11,12 @@
       "startDate": "2026-04-20",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 3,
+      "startDate": "2026-04-27",
+      "result": "tie",
+      "notes": "Tie — Travis Hemming (COL), Bobs Berry (MIL) all had teams that scored 13. Pot rolls over."
     }
   ],
   "pool2": [
@@ -25,6 +31,12 @@
       "startDate": "2026-04-20",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 3,
+      "startDate": "2026-04-27",
+      "result": "tie",
+      "notes": "Tie — Jeremy Theisen (COL), Luke Cella (MIL) all had teams that scored 13. Pot rolls over."
     }
   ]
 }
