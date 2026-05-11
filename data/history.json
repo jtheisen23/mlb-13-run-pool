@@ -17,6 +17,14 @@
       "startDate": "2026-04-27",
       "result": "tie",
       "notes": "Tie — Travis Hemming (COL), Bobs Berry (MIL) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 4,
+      "startDate": "2026-05-04",
+      "result": "winner",
+      "winner": "Pat Fisher",
+      "team": "PIT",
+      "pot": 500
     }
   ],
   "pool2": [
@@ -37,6 +45,14 @@
       "startDate": "2026-04-27",
       "result": "tie",
       "notes": "Tie — Jeremy Theisen (COL), Luke Cella (MIL) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 4,
+      "startDate": "2026-05-04",
+      "result": "winner",
+      "winner": "Jason Segebrecht",
+      "team": "PIT",
+      "pot": 500
     }
   ]
 }
