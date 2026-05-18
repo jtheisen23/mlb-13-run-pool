@@ -25,6 +25,14 @@
       "winner": "Pat Fisher",
       "team": "PIT",
       "pot": 500
+    },
+    {
+      "week": 5,
+      "startDate": "2026-05-11",
+      "result": "winner",
+      "winner": "Aaron Burnside",
+      "team": "WSH",
+      "pot": 125
     }
   ],
   "pool2": [
@@ -53,6 +61,14 @@
       "winner": "Jason Segebrecht",
       "team": "PIT",
       "pot": 500
+    },
+    {
+      "week": 5,
+      "startDate": "2026-05-11",
+      "result": "winner",
+      "winner": "Roger Brown",
+      "team": "WSH",
+      "pot": 125
     }
   ]
 }
