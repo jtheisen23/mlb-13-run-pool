@@ -33,6 +33,12 @@
       "winner": "Aaron Burnside",
       "team": "WSH",
       "pot": 125
+    },
+    {
+      "week": 6,
+      "startDate": "2026-05-18",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ],
   "pool2": [
@@ -69,6 +75,12 @@
       "winner": "Roger Brown",
       "team": "WSH",
       "pot": 125
+    },
+    {
+      "week": 6,
+      "startDate": "2026-05-18",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ]
 }
