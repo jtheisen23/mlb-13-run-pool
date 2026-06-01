@@ -39,6 +39,14 @@
       "startDate": "2026-05-18",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 7,
+      "startDate": "2026-05-25",
+      "result": "winner",
+      "winner": "Wes Frangul",
+      "team": "NYY",
+      "pot": 250
     }
   ],
   "pool2": [
@@ -81,6 +89,14 @@
       "startDate": "2026-05-18",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 7,
+      "startDate": "2026-05-25",
+      "result": "winner",
+      "winner": "Bobs Berry",
+      "team": "NYY",
+      "pot": 250
     }
   ]
 }
