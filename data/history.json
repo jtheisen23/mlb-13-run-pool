@@ -47,6 +47,12 @@
       "winner": "Wes Frangul",
       "team": "NYY",
       "pot": 250
+    },
+    {
+      "week": 8,
+      "startDate": "2026-06-01",
+      "result": "tie",
+      "notes": "Tie — Aaron Burnside (BAL), Nick Vlattas (HOU), Todd Karas (LAA) all had teams that scored 13. Pot rolls over."
     }
   ],
   "pool2": [
@@ -97,6 +103,12 @@
       "winner": "Bobs Berry",
       "team": "NYY",
       "pot": 250
+    },
+    {
+      "week": 8,
+      "startDate": "2026-06-01",
+      "result": "tie",
+      "notes": "Tie — Roger Brown (BAL), Wes Frangul (HOU), Scott Vogg (LAA) all had teams that scored 13. Pot rolls over."
     }
   ]
 }
