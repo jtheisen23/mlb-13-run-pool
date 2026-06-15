@@ -53,6 +53,12 @@
       "startDate": "2026-06-01",
       "result": "tie",
       "notes": "Tie — Aaron Burnside (BAL), Nick Vlattas (HOU), Todd Karas (LAA) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 9,
+      "startDate": "2026-06-08",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ],
   "pool2": [
@@ -109,6 +115,12 @@
       "startDate": "2026-06-01",
       "result": "tie",
       "notes": "Tie — Roger Brown (BAL), Wes Frangul (HOU), Scott Vogg (LAA) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 9,
+      "startDate": "2026-06-08",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ]
 }
