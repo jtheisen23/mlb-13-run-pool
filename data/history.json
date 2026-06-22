@@ -59,6 +59,12 @@
       "startDate": "2026-06-08",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 10,
+      "startDate": "2026-06-15",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ],
   "pool2": [
@@ -119,6 +125,12 @@
     {
       "week": 9,
       "startDate": "2026-06-08",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 10,
+      "startDate": "2026-06-15",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
     }
