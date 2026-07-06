@@ -73,6 +73,12 @@
       "winner": "Harley Piercy",
       "team": "TB",
       "pot": 500
+    },
+    {
+      "week": 12,
+      "startDate": "2026-06-29",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ],
   "pool2": [
@@ -149,6 +155,12 @@
       "winner": "Trevor Benson",
       "team": "TB",
       "pot": 500
+    },
+    {
+      "week": 12,
+      "startDate": "2026-06-29",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ]
 }
