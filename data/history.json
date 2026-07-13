@@ -79,6 +79,14 @@
       "startDate": "2026-06-29",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 13,
+      "startDate": "2026-07-06",
+      "result": "winner",
+      "winner": "Billy Bartlett",
+      "team": "LAA",
+      "pot": 250
     }
   ],
   "pool2": [
@@ -161,6 +169,14 @@
       "startDate": "2026-06-29",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 13,
+      "startDate": "2026-07-06",
+      "result": "winner",
+      "winner": "Jim Murphy",
+      "team": "LAA",
+      "pot": 250
     }
   ]
 }
