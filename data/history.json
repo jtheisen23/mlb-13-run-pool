@@ -93,6 +93,14 @@
       "startDate": "2026-07-13",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 15,
+      "startDate": "2026-07-20",
+      "result": "winner",
+      "winner": "Ted Homewood",
+      "team": "CLE",
+      "pot": 250
     }
   ],
   "pool2": [
@@ -189,6 +197,14 @@
       "startDate": "2026-07-13",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 15,
+      "startDate": "2026-07-20",
+      "result": "winner",
+      "winner": "Travis Hemming",
+      "team": "CLE",
+      "pot": 250
     }
   ]
 }
