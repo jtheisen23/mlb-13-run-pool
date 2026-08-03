@@ -101,6 +101,14 @@
       "winner": "Ted Homewood",
       "team": "CLE",
       "pot": 250
+    },
+    {
+      "week": 16,
+      "startDate": "2026-07-27",
+      "result": "winner",
+      "winner": "Brett Hassels",
+      "team": "DET",
+      "pot": 125
     }
   ],
   "pool2": [
@@ -205,6 +213,14 @@
       "winner": "Travis Hemming",
       "team": "CLE",
       "pot": 250
+    },
+    {
+      "week": 16,
+      "startDate": "2026-07-27",
+      "result": "winner",
+      "winner": "Ted Homewood",
+      "team": "DET",
+      "pot": 125
     }
   ]
 }
