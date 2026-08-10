@@ -109,6 +109,12 @@
       "winner": "Brett Hassels",
       "team": "DET",
       "pot": 125
+    },
+    {
+      "week": 17,
+      "startDate": "2026-08-03",
+      "result": "tie",
+      "notes": "Tie — Dave Hood (BOS), Greg Abel (NYM), Travis Hemming (STL), Dave Jordan (TB) all had teams that scored 13. Pot rolls over."
     }
   ],
   "pool2": [
@@ -221,6 +227,12 @@
       "winner": "Ted Homewood",
       "team": "DET",
       "pot": 125
+    },
+    {
+      "week": 17,
+      "startDate": "2026-08-03",
+      "result": "tie",
+      "notes": "Tie — Grant Douglas (BOS), Jim Whitley (NYM), Jeremy Theisen (STL), Brian Wiedenhoeft (TB) all had teams that scored 13. Pot rolls over."
     }
   ]
 }
