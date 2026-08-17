@@ -115,6 +115,12 @@
       "startDate": "2026-08-03",
       "result": "tie",
       "notes": "Tie — Dave Hood (BOS), Greg Abel (NYM), Travis Hemming (STL), Dave Jordan (TB) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 18,
+      "startDate": "2026-08-10",
+      "result": "tie",
+      "notes": "Tie — Craig Anderson (COL), Mitchell Rottier (PIT) all had teams that scored 13. Pot rolls over."
     }
   ],
   "pool2": [
@@ -233,6 +239,12 @@
       "startDate": "2026-08-03",
       "result": "tie",
       "notes": "Tie — Grant Douglas (BOS), Jim Whitley (NYM), Jeremy Theisen (STL), Brian Wiedenhoeft (TB) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 18,
+      "startDate": "2026-08-10",
+      "result": "tie",
+      "notes": "Tie — Ryan Bird (COL), Joe Novak (PIT) all had teams that scored 13. Pot rolls over."
     }
   ]
 }
