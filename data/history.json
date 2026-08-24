@@ -121,6 +121,12 @@
       "startDate": "2026-08-10",
       "result": "tie",
       "notes": "Tie — Craig Anderson (COL), Mitchell Rottier (PIT) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 19,
+      "startDate": "2026-08-17",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ],
   "pool2": [
@@ -245,6 +251,12 @@
       "startDate": "2026-08-10",
       "result": "tie",
       "notes": "Tie — Ryan Bird (COL), Joe Novak (PIT) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 19,
+      "startDate": "2026-08-17",
+      "result": "rollover",
+      "notes": "No team scored exactly 13 runs this week."
     }
   ]
 }
