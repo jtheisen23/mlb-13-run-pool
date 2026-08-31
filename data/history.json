@@ -127,6 +127,12 @@
       "startDate": "2026-08-17",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 20,
+      "startDate": "2026-08-24",
+      "result": "tie",
+      "notes": "Tie — Bobs Berry (BAL), Bobby Darnall (COL), Jim Murphy (KC), Dave Jordan (WSH) all had teams that scored 13. Pot rolls over."
     }
   ],
   "pool2": [
@@ -257,6 +263,12 @@
       "startDate": "2026-08-17",
       "result": "rollover",
       "notes": "No team scored exactly 13 runs this week."
+    },
+    {
+      "week": 20,
+      "startDate": "2026-08-24",
+      "result": "tie",
+      "notes": "Tie — Luke Cella (BAL), Brett Hassels (COL), Vic Mehren (KC), Brian Wiedenhoeft (WSH) all had teams that scored 13. Pot rolls over."
     }
   ]
 }
