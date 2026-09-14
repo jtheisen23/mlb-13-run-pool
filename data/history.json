@@ -139,6 +139,14 @@
       "startDate": "2026-08-31",
       "result": "tie",
       "notes": "Tie — Greg Abel (PIT), Nick Eggemeyer (STL) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 22,
+      "startDate": "2026-09-07",
+      "result": "winner",
+      "winner": "Brett Hassels",
+      "team": "MIL",
+      "pot": 750
     }
   ],
   "pool2": [
@@ -281,6 +289,14 @@
       "startDate": "2026-08-31",
       "result": "tie",
       "notes": "Tie — Jim Whitley (PIT), Dave Burns (STL) all had teams that scored 13. Pot rolls over."
+    },
+    {
+      "week": 22,
+      "startDate": "2026-09-07",
+      "result": "winner",
+      "winner": "Ted Homewood",
+      "team": "MIL",
+      "pot": 750
     }
   ]
 }
