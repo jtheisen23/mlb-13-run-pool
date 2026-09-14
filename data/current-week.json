@@ -1,247 +1,247 @@
 {
-  "number": 22,
-  "startDate": "2026-09-07",
+  "number": 23,
+  "startDate": "2026-09-14",
   "pool1": [
     {
-      "player": "Bill McDonald",
+      "player": "Tom Brown",
       "team": "ARI"
     },
     {
-      "player": "Dave Jordan",
+      "player": "Bill McDonald",
       "team": "ATL"
     },
     {
-      "player": "Jason Segebrecht",
+      "player": "Dave Jordan",
       "team": "BAL"
     },
     {
-      "player": "Wes Frangul",
+      "player": "Jason Segebrecht",
       "team": "BOS"
     },
     {
-      "player": "Bobs Berry",
+      "player": "Wes Frangul",
       "team": "CHC"
     },
     {
-      "player": "Bill Olsen",
+      "player": "Bobs Berry",
       "team": "CWS"
     },
     {
-      "player": "Sean Dolan",
+      "player": "Bill Olsen",
       "team": "CIN"
     },
     {
-      "player": "Harley Piercy",
+      "player": "Sean Dolan",
       "team": "CLE"
     },
     {
-      "player": "Dave Hood",
+      "player": "Harley Piercy",
       "team": "COL"
     },
     {
-      "player": "Pat Fisher",
+      "player": "Dave Hood",
       "team": "DET"
     },
     {
-      "player": "Bobby Darnall",
+      "player": "Pat Fisher",
       "team": "HOU"
     },
     {
-      "player": "Tom Zarndt",
+      "player": "Bobby Darnall",
       "team": "KC"
     },
     {
-      "player": "Craig Anderson",
+      "player": "Tom Zarndt",
       "team": "LAA"
     },
     {
-      "player": "Jim Murphy",
+      "player": "Craig Anderson",
       "team": "LAD"
     },
     {
-      "player": "Ted Homewood",
+      "player": "Jim Murphy",
       "team": "MIA"
     },
     {
-      "player": "Brett Hassels",
+      "player": "Ted Homewood",
       "team": "MIL"
     },
     {
-      "player": "Aaron Burnside",
+      "player": "Brett Hassels",
       "team": "MIN"
     },
     {
-      "player": "Jim Quisling",
+      "player": "Aaron Burnside",
       "team": "NYM"
     },
     {
-      "player": "Mike McQuillan",
+      "player": "Jim Quisling",
       "team": "NYY"
     },
     {
-      "player": "Trevor Benson",
+      "player": "Mike McQuillan",
       "team": "ATH"
     },
     {
-      "player": "Joe Novak",
+      "player": "Trevor Benson",
       "team": "PHI"
     },
     {
-      "player": "Billy Bartlett",
+      "player": "Joe Novak",
       "team": "PIT"
     },
     {
-      "player": "Greg Abel",
+      "player": "Billy Bartlett",
       "team": "STL"
     },
     {
-      "player": "Nick Eggemeyer",
+      "player": "Greg Abel",
       "team": "SD"
     },
     {
-      "player": "Nick Vlattas",
+      "player": "Nick Eggemeyer",
       "team": "SF"
     },
     {
-      "player": "Mitchell Rottier",
+      "player": "Nick Vlattas",
       "team": "SEA"
     },
     {
-      "player": "Todd Karas",
+      "player": "Mitchell Rottier",
       "team": "TB"
     },
     {
-      "player": "Travis Hemming",
+      "player": "Todd Karas",
       "team": "TEX"
     },
     {
-      "player": "Bobby Manikas",
+      "player": "Travis Hemming",
       "team": "TOR"
     },
     {
-      "player": "Tom Brown",
+      "player": "Bobby Manikas",
       "team": "WSH"
     }
   ],
   "pool2": [
     {
-      "player": "Tom Brown",
+      "player": "Brian Regan",
       "team": "ARI"
     },
     {
-      "player": "Brian Wiedenhoeft",
+      "player": "Tom Brown",
       "team": "ATL"
     },
     {
-      "player": "Todd Karas",
+      "player": "Brian Wiedenhoeft",
       "team": "BAL"
     },
     {
-      "player": "Bobs Berry",
+      "player": "Todd Karas",
       "team": "BOS"
     },
     {
-      "player": "Luke Cella",
+      "player": "Bobs Berry",
       "team": "CHC"
     },
     {
-      "player": "Dave Hood",
+      "player": "Luke Cella",
       "team": "CWS"
     },
     {
-      "player": "Gary Reno",
+      "player": "Dave Hood",
       "team": "CIN"
     },
     {
-      "player": "Trevor Benson",
+      "player": "Gary Reno",
       "team": "CLE"
     },
     {
-      "player": "Grant Douglas",
+      "player": "Trevor Benson",
       "team": "COL"
     },
     {
-      "player": "Jason Segebrecht",
+      "player": "Grant Douglas",
       "team": "DET"
     },
     {
-      "player": "Brett Hassels",
+      "player": "Jason Segebrecht",
       "team": "HOU"
     },
     {
-      "player": "Tom Rogers",
+      "player": "Brett Hassels",
       "team": "KC"
     },
     {
-      "player": "Ryan Bird",
+      "player": "Tom Rogers",
       "team": "LAA"
     },
     {
-      "player": "Vic Mehren",
+      "player": "Ryan Bird",
       "team": "LAD"
     },
     {
-      "player": "Travis Hemming",
+      "player": "Vic Mehren",
       "team": "MIA"
     },
     {
-      "player": "Ted Homewood",
+      "player": "Travis Hemming",
       "team": "MIL"
     },
     {
-      "player": "Roger Brown",
+      "player": "Ted Homewood",
       "team": "MIN"
     },
     {
-      "player": "Jeff Dillenberg",
+      "player": "Roger Brown",
       "team": "NYM"
     },
     {
-      "player": "Rob Hassels",
+      "player": "Jeff Dillenberg",
       "team": "NYY"
     },
     {
-      "player": "Bobby Manikas",
+      "player": "Rob Hassels",
       "team": "ATH"
     },
     {
-      "player": "Bob Spring",
+      "player": "Bobby Manikas",
       "team": "PHI"
     },
     {
-      "player": "Jim Murphy",
+      "player": "Bob Spring",
       "team": "PIT"
     },
     {
-      "player": "Jim Whitley",
+      "player": "Jim Murphy",
       "team": "STL"
     },
     {
-      "player": "Dave Burns",
+      "player": "Jim Whitley",
       "team": "SD"
     },
     {
-      "player": "Wes Frangul",
+      "player": "Dave Burns",
       "team": "SF"
     },
     {
-      "player": "Joe Novak",
+      "player": "Wes Frangul",
       "team": "SEA"
     },
     {
-      "player": "Scott Vogg",
+      "player": "Joe Novak",
       "team": "TB"
     },
     {
-      "player": "Jeremy Theisen",
+      "player": "Scott Vogg",
       "team": "TEX"
     },
     {
-      "player": "Lee Schreiber",
+      "player": "Jeremy Theisen",
       "team": "TOR"
     },
     {
-      "player": "Brian Regan",
+      "player": "Lee Schreiber",
       "team": "WSH"
     }
   ]
